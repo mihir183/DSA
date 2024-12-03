@@ -15,7 +15,6 @@ int reverse(int n){
         // rev =  rev * 10 + (n%10); 
         // n = n/10;
 
-
     }
 
     return rev;
@@ -31,3 +30,4 @@ int main(){
 
     cout<<n<<" reverse is : "<<reverse(n);
 }
+
