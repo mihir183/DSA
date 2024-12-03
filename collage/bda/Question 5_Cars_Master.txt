@@ -1,0 +1,401 @@
+Level : Medium
+
+Create a “Showroom” database with a collection called “Cars”, containing documents with some or
+all of the following fields:
+Model No, Car Name, Colors (Note: An array is expected), Speed, Mfd Country, and Date of
+manufacturing (Note: Use Proper Date format). Perform the following operations on the database.
+(Insert at least 10 documents).
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+switched to db Showroom
+Showroom> db.Cars.find();
+[
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bc'),
+    ModelNo: 'Md0122',
+    CarName: 'Swift',
+    Colors: [ 'Red', 'White', 'Blue' ],
+    Speed: 60,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2020-01-10T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bd'),
+    ModelNo: 'Md0135',
+    CarName: 'Baleno',
+    Colors: [ 'Red', 'Green', 'Black' ],
+    Speed: 55,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2019-03-25T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710be'),
+    ModelNo: 'Md0255',
+    CarName: 'Creta',
+    Colors: [ 'Black', 'White', 'Grey' ],
+    Speed: 70,
+    MfdCountry: 'Korea',
+    DateOfManufacturing: ISODate('2021-05-18T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bf'),
+    ModelNo: 'Md0453',
+    CarName: 'Seltos',
+    Colors: [ 'Red', 'Yellow', 'Green' ],
+    Speed: 45,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2018-02-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c0'),
+    ModelNo: 'Md0987',
+    CarName: 'Fortuner',
+    Colors: [ 'Black', 'Grey', 'Blue' ],
+    Speed: 80,
+    MfdCountry: 'Japan',
+    DateOfManufacturing: ISODate('2017-11-05T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c1'),
+    ModelNo: 'Md0789',
+    CarName: 'Alto',
+    Colors: [ 'White', 'Blue' ],
+    Speed: 65,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2016-08-20T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c2'),
+    ModelNo: 'Md0675',
+    CarName: 'Duster',
+    Colors: [ 'Red', 'Green' ],
+    Speed: 50,
+    MfdCountry: 'France',
+    DateOfManufacturing: ISODate('2020-04-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c3'),
+    ModelNo: 'Md0456',
+    CarName: 'Brezza',
+    Colors: [ 'Orange', 'Black' ],
+    Speed: 75,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2021-06-30T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c4'),
+    ModelNo: 'Md0123',
+    CarName: 'Venue',
+    Colors: [ 'White', 'Blue', 'Green' ],
+    Speed: 52,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2022-01-15T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c5'),
+    ModelNo: 'Md0984',
+    CarName: 'i20',
+    Colors: [ 'Red', 'White', 'Grey' ],
+    Speed: 40,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2019-09-25T00:00:00.000Z')
+  }
+]
+
+1. Display only the car names, where speed is greater than 50.
+Showroom> db.Cars.find({Speed:{$gt:50}},{_id:0,CarName:1})
+[
+  { CarName: 'Swift' },
+  { CarName: 'Baleno' },
+  { CarName: 'Creta' },
+  { CarName: 'Fortuner' },
+  { CarName: 'Alto' },
+  { CarName: 'Brezza' },
+  { CarName: 'Venue' }
+]
+
+2. Find the documents, where Model No is either “Md0135” or “Md0453”.
+Showroom> db.Cars.find({ModelNo:{$in:['Md0135' , 'Md0453']}});
+[
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bd'),
+    ModelNo: 'Md0135',
+    CarName: 'Baleno',
+    Colors: [ 'Red', 'Green', 'Black' ],
+    Speed: 55,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2019-03-25T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bf'),
+    ModelNo: 'Md0453',
+    CarName: 'Seltos',
+    Colors: [ 'Red', 'Yellow', 'Green' ],
+    Speed: 45,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2018-02-12T00:00:00.000Z')
+  }
+]
+
+3 Display the names and date of manufacturing of cars, whose speed is greater than 40 and less than 65.
+  Showroom> db.Cars.find({Speed:{$gt:40,$lt:65}},{_id:0,CarName:1,DateOfManufacturing:1})
+[
+  {
+    CarName: 'Swift',
+    DateOfManufacturing: ISODate('2020-01-10T00:00:00.000Z')
+  },
+  {
+    CarName: 'Baleno',
+    DateOfManufacturing: ISODate('2019-03-25T00:00:00.000Z')
+  },
+  {
+    CarName: 'Seltos',
+    DateOfManufacturing: ISODate('2018-02-12T00:00:00.000Z')
+  },
+  {
+    CarName: 'Duster',
+    DateOfManufacturing: ISODate('2020-04-07T00:00:00.000Z')
+  },
+  {
+    CarName: 'Venue',
+    DateOfManufacturing: ISODate('2022-01-15T00:00:00.000Z')
+  }
+]
+
+4. Sort all the documents based on the Car Name in the descending order. Display only the first 5 records.
+Showroom> db.Cars.find().sort({CarName:-1}).limit(5);
+[
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c4'),
+    ModelNo: 'Md0123',
+    CarName: 'Venue',
+    Colors: [ 'White', 'Blue', 'Green' ],
+    Speed: 52,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2022-01-15T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bc'),
+    ModelNo: 'Md0122',
+    CarName: 'Swift',
+    Colors: [ 'Red', 'White', 'Blue' ],
+    Speed: 60,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2020-01-10T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bf'),
+    ModelNo: 'Md0453',
+    CarName: 'Seltos',
+    Colors: [ 'Red', 'Yellow', 'Green' ],
+    Speed: 45,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2018-02-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c5'),
+    ModelNo: 'Md0984',
+    CarName: 'I20',
+    Colors: [ 'Red', 'White', 'Grey' ],
+    Speed: 40,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2019-09-25T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c0'),
+    ModelNo: 'Md0987',
+    CarName: 'Fortuner',
+    Colors: [ 'Black', 'Grey', 'Blue' ],
+    Speed: 80,
+    MfdCountry: 'Japan',
+    DateOfManufacturing: ISODate('2017-11-05T00:00:00.000Z')
+  }
+]
+
+5. Display the last 3 records where Mfd Country is “India”.
+
+Showroom> db.Cars.find({MfdCountry:"India"}).sort({_id:-1}).limit(3);
+[
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c5'),
+    ModelNo: 'Md0984',
+    CarName: 'I20',
+    Colors: [ 'Red', 'White', 'Grey' ],
+    Speed: 40,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2019-09-25T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c4'),
+    ModelNo: 'Md0123',
+    CarName: 'Venue',
+    Colors: [ 'White', 'Blue', 'Green' ],
+    Speed: 52,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2022-01-15T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c3'),
+    ModelNo: 'Md0456',
+    CarName: 'Brezza',
+    Colors: [ 'Orange', 'Black' ],
+    Speed: 75,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2021-06-30T00:00:00.000Z')
+  }
+]
+
+
+6. Add a field called “Descriptor”, which describes the car model for documents with Model No, is “Md0122”, “Md0255” and “Md0135”.
+
+Showroom> db.Cars.updateMany({ModelNo:{$in:["Md0122","Md0255","Md0135"]}},{$set:{Descriptor:"popular"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+Showroom> db.Cars.find();
+[
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bc'),
+    ModelNo: 'Md0122',
+    CarName: 'Swift',
+    Colors: [ 'Red', 'White', 'Blue' ],
+    Speed: 60,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2020-01-10T00:00:00.000Z'),
+    Descriptor: 'popular'
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bd'),
+    ModelNo: 'Md0135',
+    CarName: 'Baleno',
+    Colors: [ 'Red', 'Green', 'Black' ],
+    Speed: 55,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2019-03-25T00:00:00.000Z'),
+    Descriptor: 'popular'
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710be'),
+    ModelNo: 'Md0255',
+    CarName: 'Creta',
+    Colors: [ 'Black', 'White', 'Grey' ],
+    Speed: 70,
+    MfdCountry: 'Korea',
+    DateOfManufacturing: ISODate('2021-05-18T00:00:00.000Z'),
+    Descriptor: 'popular'
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bf'),
+    ModelNo: 'Md0453',
+    CarName: 'Seltos',
+    Colors: [ 'Red', 'Yellow', 'Green' ],
+    Speed: 45,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2018-02-12T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c0'),
+    ModelNo: 'Md0987',
+    CarName: 'Fortuner',
+    Colors: [ 'Black', 'Grey', 'Blue' ],
+    Speed: 80,
+    MfdCountry: 'Japan',
+    DateOfManufacturing: ISODate('2017-11-05T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c1'),
+    ModelNo: 'Md0789',
+    CarName: 'Alto',
+    Colors: [ 'White', 'Blue' ],
+    Speed: 65,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2016-08-20T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c2'),
+    ModelNo: 'Md0675',
+    CarName: 'Duster',
+    Colors: [ 'Red', 'Green' ],
+    Speed: 50,
+    MfdCountry: 'France',
+    DateOfManufacturing: ISODate('2020-04-07T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c3'),
+    ModelNo: 'Md0456',
+    CarName: 'Brezza',
+    Colors: [ 'Orange', 'Black' ],
+    Speed: 75,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2021-06-30T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c4'),
+    ModelNo: 'Md0123',
+    CarName: 'Venue',
+    Colors: [ 'White', 'Blue', 'Green' ],
+    Speed: 52,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2022-01-15T00:00:00.000Z')
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710c5'),
+    ModelNo: 'Md0984',
+    CarName: 'I20',
+    Colors: [ 'Red', 'White', 'Grey' ],
+    Speed: 40,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2019-09-25T00:00:00.000Z')
+  }
+]
+
+
+7. Search the documents where the Descriptor field contains the word “popular” or “famous”.
+Showroom> db.Cars.find({Descriptor:(/popular|famous/)});
+[
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bc'),
+    ModelNo: 'Md0122',
+    CarName: 'Swift',
+    Colors: [ 'Red', 'White', 'Blue' ],
+    Speed: 60,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2020-01-10T00:00:00.000Z'),
+    Descriptor: 'popular'
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710bd'),
+    ModelNo: 'Md0135',
+    CarName: 'Baleno',
+    Colors: [ 'Red', 'Green', 'Black' ],
+    Speed: 55,
+    MfdCountry: 'India',
+    DateOfManufacturing: ISODate('2019-03-25T00:00:00.000Z'),
+    Descriptor: 'popular'
+  },
+  {
+    _id: ObjectId('67066bfdcfe5f67d2e2710be'),
+    ModelNo: 'Md0255',
+    CarName: 'Creta',
+    Colors: [ 'Black', 'White', 'Grey' ],
+    Speed: 70,
+    MfdCountry: 'Korea',
+    DateOfManufacturing: ISODate('2021-05-18T00:00:00.000Z'),
+    Descriptor: 'popular'
+  }
+]
+
+8. Find the Model No’s and Car Names of those documents where the colours have “red” and “green” as elements
+Showroom> db.Cars.find({Colors:{$in:['Red','Green']}},{_id:0,ModelNo:1,CarName:1});
+[
+  { ModelNo: 'Md0122', CarName: 'Swift' },
+  { ModelNo: 'Md0135', CarName: 'Baleno' },
+  { ModelNo: 'Md0453', CarName: 'Seltos' },
+  { ModelNo: 'Md0675', CarName: 'Duster' },
+  { ModelNo: 'Md0123', CarName: 'Venue' },
+  { ModelNo: 'Md0984', CarName: 'I20' }
+]

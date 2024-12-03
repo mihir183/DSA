@@ -1,0 +1,57 @@
+********************  Max SALARY **********************
+
+db.Employee_Master.aggregate([
+  { 
+    $group: {
+      _id: "$Name",           
+      MaxSalary: { $max: "$Salary" }
+    }
+  },
+  { 
+    $sort: { MaxSalary: -1 }  
+   },
+  {
+    $limit: 1  
+ }
+]);
+
+
+********************  Min SALARY **********************
+
+db.Employee_Master.aggregate([
+  { 
+    $group: {
+      _id: "$Name",           
+      MinSalary: { $min: "$Salary" }
+    }
+  },
+  { 
+    $sort: { MinSalary: 1 }  
+   },
+  {
+    $limit: 1  
+ }
+]);
+
+
+
+********************  Avg SALARY **********************
+
+db.Employee_Master.aggregate([
+  { 
+    $group: {
+      _id: "$Name",           
+      AvgSalary: { $avg: "$Salary" }
+    }
+  },
+{
+$group: {
+
+    _id:"$Name",
+    TotalAvgSalary:{$avg: "$AvgSalary"}
+   }
+}
+]);
+
+
+************************* END *********************************
