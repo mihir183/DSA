@@ -11,6 +11,11 @@ int reverse(int n){
         rev =  rev * 10 + temp;
         n = n/10;
 
+        //Also Write in this way
+        // rev =  rev * 10 + (n%10); 
+        // n = n/10;
+
+
     }
 
     return rev;
