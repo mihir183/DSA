@@ -30,4 +30,3 @@ int main(){
 
     cout<<n<<" reverse is : "<<reverse(n);
 }
-
