@@ -62,7 +62,7 @@ int main(){
     DisplayData(arr,n);
 
     int ch;
-    cout<<endl;
+    cout<<endl<<endl;
     cout<<"1 : Buuble Sort"<<endl;
     cout<<"2 : Selection Sort"<<endl;
     cout<<"3 : Insertion Sort"<<endl;
