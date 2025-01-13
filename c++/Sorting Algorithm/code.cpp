@@ -51,6 +51,15 @@ void SelectionSort(int arr[],int n){
     
 }
 
+void InsertionSort(int arr[],int n){
+    for (int i = 0; i < n; i++)
+    {
+       
+    }
+    
+}
+
+
 int main(){
 
     int n;
@@ -79,6 +88,11 @@ int main(){
     case 2:
         SelectionSort(arr,n);
         cout<<endl<<"After Selection Sort Aplly : ";
+        DisplayData(arr,n);
+        break;
+    case 3:
+        InsertionSort(arr,n);
+        cout<<endl<<"After InsertIon Sort Aplly : ";
         DisplayData(arr,n);
         break;
     
