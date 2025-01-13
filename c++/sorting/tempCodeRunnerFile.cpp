@@ -1,0 +1,2 @@
+
+    DisplayData(arr,n);
